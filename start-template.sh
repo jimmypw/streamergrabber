@@ -10,6 +10,7 @@ export APPSECRE="bacabcabc"
 export USRTOKEN="123123123"
 export USRSECRE="bacabcabc"
 
+export DEBUG="false"
 export TRACK="twitter"
 
 node twitter.js

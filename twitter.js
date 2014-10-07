@@ -95,16 +95,23 @@ function oauth_create_header(oauth) {
 }
 
 function processTweets(res) {
-	res.on('data', function(chunk) {
-		try {
-			var tweet = JSON.parse(chunk.toString());
-			console.log("@" + normaliseUsername(tweet.user.screen_name, 30) + tweet.text)
-			//console.log(tweet)
-		} catch (e) {
-			//console.log(chunk.toString())
-			//unable to parse json, we don't care we just don't deal with it
-		}
-	});
+	if (process.env.DEBUG == "true") {
+		console.log(res)
+	}
+	if (res.statusCode == '200'){
+		res.on('data', function(chunk) {
+			try {
+				var tweet = JSON.parse(chunk.toString());
+				console.log("@" + normaliseText(tweet.user.screen_name, 30) + tweet.text)
+			} catch (e) {
+				//unable to parse json, we don't care we just don't deal with it
+			}
+		});
+	} else {
+		res.on('data', function(chunk) {
+			console.log(chunk.toString())
+		});
+	}
 }
 
 function normaliseText(user, length) {
