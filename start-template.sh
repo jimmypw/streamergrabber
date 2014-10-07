@@ -10,8 +10,11 @@ export APPSECRE="bacabcabc"
 export USRTOKEN="123123123"
 export USRSECRE="bacabcabc"
 
+# Default Colour (User)
 export DEFCOLOR="0;32m"
+# Highlight (Tracked keywords) colour
 export HGHCOLOR="0;34;1;43m"
+# Tweed Colour
 export TWTCOLOR="0;36m"
 
 export DEBUG="false"
