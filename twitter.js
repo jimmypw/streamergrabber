@@ -132,7 +132,7 @@ function highlightKeywords(tweet, keywords){
 	var returnData = tweet
 	for (w in words) {
 		var regex = new RegExp("(" + words[w]  +")", "i");
-		returnData = tweet.replace(regex, highlightcolour + "$1" + tweetcolour)
+		returnData = returnData.replace(regex, highlightcolour + "$1" + tweetcolour)
 	}
 	return returnData
 }
