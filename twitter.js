@@ -3,6 +3,11 @@ var url = require('url');
 var crypto = require('crypto');
 var querystring = require('querystring');
 
+esccolour = "\033["
+defaultcolour = esccolour + process.env.DEFCOLOR
+tweetcolour = esccolour + process.env.TWTCOLOR
+highlightcolour = esccolour + process.env.HGHCOLOR
+
 var hash = crypto.createHash('sha1');
 var nonce = hash.update(crypto.randomBytes(32)).digest('hex');
 
@@ -102,7 +107,7 @@ function processTweets(res) {
 		res.on('data', function(chunk) {
 			try {
 				var tweet = JSON.parse(chunk.toString());
-				console.log("@" + normaliseText(tweet.user.screen_name, 30) + tweet.text)
+				console.log(defaultcolour + "@" + normaliseText(tweet.user.screen_name, 30) + tweetcolour + highlightKeywords(tweet.text, query.track))
 			} catch (e) {
 				//unable to parse json, we don't care we just don't deal with it
 			}
@@ -118,6 +123,16 @@ function normaliseText(user, length) {
 	var returnData = user
 	for (var i = length - user.length; i > 0; i--) {
 		returnData += " "
+	}
+	return returnData
+}
+
+function highlightKeywords(tweet, keywords){
+	var words = keywords.split(',')
+	var returnData = tweet
+	for (w in words) {
+		var regex = new RegExp("(" + words[w]  +")", "i");
+		returnData = tweet.replace(regex, highlightcolour + "$1" + tweetcolour)
 	}
 	return returnData
 }

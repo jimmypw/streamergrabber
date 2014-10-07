@@ -10,6 +10,10 @@ export APPSECRE="bacabcabc"
 export USRTOKEN="123123123"
 export USRSECRE="bacabcabc"
 
+export DEFCOLOR="0;32m"
+export HGHCOLOR="0;34;1;43m"
+export TWTCOLOR="0;36m"
+
 export DEBUG="false"
 export TRACK="twitter"
 
