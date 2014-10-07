@@ -98,7 +98,7 @@ function processTweets(res) {
 	res.on('data', function(chunk) {
 		try {
 			var tweet = JSON.parse(chunk.toString());
-			console.log("@" + normaliseUsername(tweet.user.screen_name) + tweet.text)
+			console.log("@" + normaliseUsername(tweet.user.screen_name, 30) + tweet.text)
 			//console.log(tweet)
 		} catch (e) {
 			//console.log(chunk.toString())
@@ -107,10 +107,9 @@ function processTweets(res) {
 	});
 }
 
-function normaliseUsername(user) {
-	var normlen = 30
+function normaliseText(user, length) {
 	var returnData = user
-	for (var i = normlen - user.length; i > 0; i--) {
+	for (var i = length - user.length; i > 0; i--) {
 		returnData += " "
 	}
 	return returnData
