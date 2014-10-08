@@ -18,11 +18,6 @@ console.log("Search Terms: ");
 console.log("Track: " + process.env.TRACK);
 console.log("+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+")
 
-setInterval(function() {
-	var d = new Date()
-	console.log(d.toLocaleTimeString())
-}, 1000 * 60 * 10) // 10 minutes
-
 // Main app starts here
 
 var OAuth = newOauth();
@@ -124,6 +119,10 @@ function processTweets(res) {
 		console.log(res);
 	}
 	if (res.statusCode == '200'){
+		setInterval(function() {
+			var d = new Date()
+			console.log(d.toLocaleTimeString())
+		}, 1000 * 60 * 10) // 10 minutes
 		res.on('data', function(chunk) {
 			try {
 				var tweet = JSON.parse(chunk.toString());
