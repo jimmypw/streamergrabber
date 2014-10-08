@@ -110,7 +110,10 @@ function processTweets(res) {
 		res.on('data', function(chunk) {
 			try {
 				var tweet = JSON.parse(chunk.toString());
-				console.log(defaultcolour + "@" + normaliseText(tweet.user.screen_name, 30) + tweetcolour + highlightKeywords(tweet.text, query.track));
+                var message = tweet.text
+                var re = /\n|\r/g
+                message = message.replace(re, " ")
+				console.log(defaultcolour + "@" + normaliseText(tweet.user.screen_name, 23) + tweetcolour + highlightKeywords(message, query.track));
 			} catch (e) {
 				//unable to parse json, we don't care we just don't deal with it
 			}
