@@ -110,9 +110,8 @@ function processTweets(res) {
 		res.on('data', function(chunk) {
 			try {
 				var tweet = JSON.parse(chunk.toString());
-                var message = tweet.text
-                var re = /\n|\r/g
-                message = message.replace(re, " ")
+				var re = /\n|\r/g;
+				var message = tweet.text.replace(re, " ")
 				console.log(defaultcolour + "@" + normaliseText(tweet.user.screen_name, 23) + tweetcolour + highlightKeywords(message, query.track));
 			} catch (e) {
 				//unable to parse json, we don't care we just don't deal with it
@@ -137,7 +136,7 @@ function highlightKeywords(tweet, keywords){
 	var words = keywords.split(',');
 	var returnData = tweet;
 	for (w in words) {
-		var regex = new RegExp("(" + words[w]  +")", "i");
+		var regex = new RegExp("(" + words[w]  + ")", "i");
 		returnData = returnData.replace(regex, highlightcolour + "$1" + tweetcolour);
 	}
 	return returnData;
