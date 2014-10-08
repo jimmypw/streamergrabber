@@ -126,7 +126,7 @@ function processTweets(res) {
 				var message = tweet.text.replace(re, " ")
 				var d = new Date()
 				console.log(defaultcolour + 
-					console.log(d.toLocaleTimeString()) + 
+					console.log(d.toLocaleTimeString() + 
 					" @" + normaliseText(tweet.user.screen_name, 23) + 
 					tweetcolour + highlightKeywords(message, query.track) + 
 					resetcolour);
