@@ -119,16 +119,17 @@ function processTweets(res) {
 		console.log(res);
 	}
 	if (res.statusCode == '200'){
-		setInterval(function() {
-			var d = new Date()
-			console.log(d.toLocaleTimeString())
-		}, 1000 * 60 * 10) // 10 minutes
 		res.on('data', function(chunk) {
 			try {
 				var tweet = JSON.parse(chunk.toString());
 				var re = /\n|\r/g;
 				var message = tweet.text.replace(re, " ")
-				console.log(defaultcolour + "@" + normaliseText(tweet.user.screen_name, 23) + tweetcolour + highlightKeywords(message, query.track) + resetcolour);
+				var d = new Date()
+				console.log(defaultcolour + 
+					console.log(d.toLocaleTimeString()) + 
+					" @" + normaliseText(tweet.user.screen_name, 23) + 
+					tweetcolour + highlightKeywords(message, query.track) + 
+					resetcolour);
 			} catch (e) {
 				//unable to parse json, we don't care we just don't deal with it
 			}
