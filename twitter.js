@@ -3,10 +3,11 @@ var url = require('url');
 var crypto = require('crypto');
 var querystring = require('querystring');
 
-esccolour = "\033[";
-defaultcolour = esccolour + process.env.DEFCOLOR;
-tweetcolour = esccolour + process.env.TWTCOLOR;
-highlightcolour = esccolour + process.env.HGHCOLOR;
+esc = "\033[";
+defaultcolour = esc + process.env.DEFCOLOR;
+tweetcolour = esc + process.env.TWTCOLOR;
+highlightcolour = esc + process.env.HGHCOLOR;
+resetcolour = esc + "0m"
 
 var OAuth = newOauth();
 var query = {"track": process.env.TRACK};
@@ -112,7 +113,7 @@ function processTweets(res) {
 				var tweet = JSON.parse(chunk.toString());
 				var re = /\n|\r/g;
 				var message = tweet.text.replace(re, " ")
-				console.log(defaultcolour + "@" + normaliseText(tweet.user.screen_name, 23) + tweetcolour + highlightKeywords(message, query.track));
+				console.log(defaultcolour + "@" + normaliseText(tweet.user.screen_name, 23) + tweetcolour + highlightKeywords(message, query.track) + resetcolour);
 			} catch (e) {
 				//unable to parse json, we don't care we just don't deal with it
 			}
