@@ -3,11 +3,25 @@ var url = require('url');
 var crypto = require('crypto');
 var querystring = require('querystring');
 
+// Set some variables for colours
 esc = "\033[";
 defaultcolour = esc + process.env.DEFCOLOR;
 tweetcolour = esc + process.env.TWTCOLOR;
 highlightcolour = esc + process.env.HGHCOLOR;
 resetcolour = esc + "0m"
+
+// Init bits
+console.log("StreamerGrabber starting ip")
+console.log(Date.now().toString())
+console.log("Search Terms: ");
+console.log("Track: " + process.env.TRACK)
+console.log("+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+")
+
+setInterval(function() {
+	console.log(Date.now().toString())
+}, 1000 * 60 * 10 ) // 10 minutes
+
+// Main app starts here
 
 var OAuth = newOauth();
 var query = {"track": process.env.TRACK};
