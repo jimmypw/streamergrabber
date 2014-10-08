@@ -11,15 +11,17 @@ highlightcolour = esc + process.env.HGHCOLOR;
 resetcolour = esc + "0m"
 
 // Init bits
-console.log("StreamerGrabber starting ip")
-console.log(Date.now().toString())
+console.log("StreamerGrabber starting up");
+var d = new Date();
+console.log(d.toLocaleTimeString());
 console.log("Search Terms: ");
-console.log("Track: " + process.env.TRACK)
+console.log("Track: " + process.env.TRACK);
 console.log("+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+")
 
 setInterval(function() {
-	console.log(Date.now().toString())
-}, 1000 * 60 * 10 ) // 10 minutes
+	var d = new Date()
+	console.log(d.toLocaleTimeString())
+}, 1000 * 60 * 10) // 10 minutes
 
 // Main app starts here
 
