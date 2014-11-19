@@ -12,8 +12,10 @@ export USRSECRE="bacabcabc"
 
 # Default Colour (User)
 export DEFCOLOR="0;32m"
+
 # Highlight (Tracked keywords) colour
-export HGHCOLOR="0;34;1;43m"
+export HGHCOLOR="0;30;43m"
+
 # Tweed Colour
 export TWTCOLOR="0;36m"
 
