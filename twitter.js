@@ -119,12 +119,15 @@ function processTweets(res) {
 		console.log(res);
 	}
 	if (res.statusCode == '200'){
+    var responseData = "";
 		res.on('data', function(chunk) {
 			try {
-				var tweet = JSON.parse(chunk.toString());
+				responseData += chunk.toString();
+        var tweet = JSON.parse(responseData);
+        responseData = "";
 				var re = /\n|\r/g;
-				var message = tweet.text.replace(re, " ")
-				var d = new Date()
+				var message = tweet.text.replace(re, " ");
+				var d = new Date();
 				console.log(defaultcolour + 
 					d.toLocaleTimeString() + 
 					" @" + normaliseText(tweet.user.screen_name, 23) + 
@@ -152,7 +155,7 @@ function highlightKeywords(tweet, keywords){
 	var words = keywords.split(',');
 	var returnData = tweet;
 	for (w in words) {
-		var regex = new RegExp("(" + words[w]  + ")", "i");
+		var regex = new RegExp("(" + words[w]  + ")", "ig");
 		returnData = returnData.replace(regex, highlightcolour + "$1" + tweetcolour);
 	}
 	return returnData;
